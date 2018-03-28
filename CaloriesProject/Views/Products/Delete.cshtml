@@ -1,0 +1,72 @@
+﻿@model CaloriesProject.Models.Product
+
+@{
+    ViewBag.Title = "Удалить продукт";
+}
+
+<h2>Удалить продукт</h2>
+
+<h3>Вы уверены, что хотите удалить этот продукт?</h3>
+<div>
+    <h4>Удалить продукт</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Calories)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Calories)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Proteins)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Proteins)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fats)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fats)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Carbohydrates)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Carbohydrates)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Назад к таблице", "Index")
+        </div>
+    }
+</div>

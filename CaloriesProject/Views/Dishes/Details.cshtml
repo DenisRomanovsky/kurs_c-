@@ -1,0 +1,74 @@
+﻿@model CaloriesProject.Models.Dish
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Dish</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DishName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DishName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DishDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DishDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Calories)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Calories)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Proteins)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Proteins)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fats)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fats)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Carbohydrates)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Carbohydrates)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.UserName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.DishID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

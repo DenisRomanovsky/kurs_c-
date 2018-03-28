@@ -1,0 +1,323 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CaloriesProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Dishes">
+          <Key>
+            <PropertyRef Name="DishID" />
+          </Key>
+          <Property Name="DishName" Type="varchar(max)" />
+          <Property Name="DishID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DishDescription" Type="varchar(max)" />
+          <Property Name="Calories" Type="float" />
+          <Property Name="Proteins" Type="float" />
+          <Property Name="Fats" Type="float" />
+          <Property Name="Carbohydrates" Type="float" />
+          <Property Name="UserID" Type="int" />
+        </EntityType>
+        <EntityType Name="DishProducts">
+          <Key>
+            <PropertyRef Name="DishProductID" />
+          </Key>
+          <Property Name="DishID" Type="int" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="Grams" Type="int" />
+          <Property Name="DishProductID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="ProductName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ProductDescription" Type="varchar" MaxLength="255" />
+          <Property Name="Calories" Type="float" />
+          <Property Name="Proteins" Type="float" />
+          <Property Name="Fats" Type="float" />
+          <Property Name="Carbohydrates" Type="float" />
+          <Property Name="UserID" Type="int" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="UserPassword" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Dish_Prod__DishI__5EBF139D">
+          <End Role="Dishes" Type="Self.Dishes" Multiplicity="1" />
+          <End Role="DishProducts" Type="Self.DishProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dishes">
+              <PropertyRef Name="DishID" />
+            </Principal>
+            <Dependent Role="DishProducts">
+              <PropertyRef Name="DishID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Dish_Prod__Produ__5FB337D6">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="DishProducts" Type="Self.DishProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="DishProducts">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Dishes__UserID__628FA481">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Dishes" Type="Self.Dishes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Dishes">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Products__UserID__6383C8BA">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CaloriesProjectModelStoreContainer">
+          <EntitySet Name="Dishes" EntityType="Self.Dishes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DishProducts" EntityType="Self.DishProducts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Dish_Prod__DishI__5EBF139D" Association="Self.FK__Dish_Prod__DishI__5EBF139D">
+            <End Role="Dishes" EntitySet="Dishes" />
+            <End Role="DishProducts" EntitySet="DishProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Dish_Prod__Produ__5FB337D6" Association="Self.FK__Dish_Prod__Produ__5FB337D6">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="DishProducts" EntitySet="DishProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Dishes__UserID__628FA481" Association="Self.FK__Dishes__UserID__628FA481">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Dishes" EntitySet="Dishes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Products__UserID__6383C8BA" Association="Self.FK__Products__UserID__6383C8BA">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CaloriesProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Dish">
+          <Key>
+            <PropertyRef Name="DishID" />
+          </Key>
+          <Property Name="DishName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DishID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DishDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Calories" Type="Double" />
+          <Property Name="Proteins" Type="Double" />
+          <Property Name="Fats" Type="Double" />
+          <Property Name="Carbohydrates" Type="Double" />
+          <Property Name="UserID" Type="Int32" />
+          <NavigationProperty Name="DishProducts" Relationship="Self.FK__Dish_Prod__DishI__5EBF139D" FromRole="Dishes" ToRole="DishProducts" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Dishes__UserID__628FA481" FromRole="Dishes" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="DishProduct">
+          <Key>
+            <PropertyRef Name="DishProductID" />
+          </Key>
+          <Property Name="DishID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="Grams" Type="Int32" />
+          <Property Name="DishProductID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Dish" Relationship="Self.FK__Dish_Prod__DishI__5EBF139D" FromRole="DishProducts" ToRole="Dishes" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__Dish_Prod__Produ__5FB337D6" FromRole="DishProducts" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="ProductName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProductDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Calories" Type="Double" />
+          <Property Name="Proteins" Type="Double" />
+          <Property Name="Fats" Type="Double" />
+          <Property Name="Carbohydrates" Type="Double" />
+          <Property Name="UserID" Type="Int32" />
+          <NavigationProperty Name="DishProducts" Relationship="Self.FK__Dish_Prod__Produ__5FB337D6" FromRole="Products" ToRole="DishProducts" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Products__UserID__6383C8BA" FromRole="Products" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserPassword" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Dishes" Relationship="Self.FK__Dishes__UserID__628FA481" FromRole="Users" ToRole="Dishes" />
+          <NavigationProperty Name="Products" Relationship="Self.FK__Products__UserID__6383C8BA" FromRole="Users" ToRole="Products" />
+        </EntityType>
+        <Association Name="FK__Dish_Prod__DishI__5EBF139D">
+          <End Role="Dishes" Type="Self.Dish" Multiplicity="1" />
+          <End Role="DishProducts" Type="Self.DishProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dishes">
+              <PropertyRef Name="DishID" />
+            </Principal>
+            <Dependent Role="DishProducts">
+              <PropertyRef Name="DishID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Dishes__UserID__628FA481">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Dishes" Type="Self.Dish" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Dishes">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Dish_Prod__Produ__5FB337D6">
+          <End Role="Products" Type="Self.Product" Multiplicity="1" />
+          <End Role="DishProducts" Type="Self.DishProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="DishProducts">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Products__UserID__6383C8BA">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Products" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CaloriesProjectEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Dishes" EntityType="Self.Dish" />
+          <EntitySet Name="DishProducts" EntityType="Self.DishProduct" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK__Dish_Prod__DishI__5EBF139D" Association="Self.FK__Dish_Prod__DishI__5EBF139D">
+            <End Role="Dishes" EntitySet="Dishes" />
+            <End Role="DishProducts" EntitySet="DishProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Dishes__UserID__628FA481" Association="Self.FK__Dishes__UserID__628FA481">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Dishes" EntitySet="Dishes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Dish_Prod__Produ__5FB337D6" Association="Self.FK__Dish_Prod__Produ__5FB337D6">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="DishProducts" EntitySet="DishProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Products__UserID__6383C8BA" Association="Self.FK__Products__UserID__6383C8BA">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CaloriesProjectModelStoreContainer" CdmEntityContainer="CaloriesProjectEntities">
+          <EntitySetMapping Name="Dishes">
+            <EntityTypeMapping TypeName="CaloriesProjectModel.Dish">
+              <MappingFragment StoreEntitySet="Dishes">
+                <ScalarProperty Name="DishName" ColumnName="DishName" />
+                <ScalarProperty Name="DishID" ColumnName="DishID" />
+                <ScalarProperty Name="DishDescription" ColumnName="DishDescription" />
+                <ScalarProperty Name="Calories" ColumnName="Calories" />
+                <ScalarProperty Name="Proteins" ColumnName="Proteins" />
+                <ScalarProperty Name="Fats" ColumnName="Fats" />
+                <ScalarProperty Name="Carbohydrates" ColumnName="Carbohydrates" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DishProducts">
+            <EntityTypeMapping TypeName="CaloriesProjectModel.DishProduct">
+              <MappingFragment StoreEntitySet="DishProducts">
+                <ScalarProperty Name="DishID" ColumnName="DishID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Grams" ColumnName="Grams" />
+                <ScalarProperty Name="DishProductID" ColumnName="DishProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="CaloriesProjectModel.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+                <ScalarProperty Name="Calories" ColumnName="Calories" />
+                <ScalarProperty Name="Proteins" ColumnName="Proteins" />
+                <ScalarProperty Name="Fats" ColumnName="Fats" />
+                <ScalarProperty Name="Carbohydrates" ColumnName="Carbohydrates" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="CaloriesProjectModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

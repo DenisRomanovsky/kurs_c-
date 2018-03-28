@@ -1,0 +1,62 @@
+﻿@model IEnumerable<CaloriesProject.Models.Dish>
+
+@{
+    ViewBag.Title = "Таблица блюд";
+}
+
+<h2>Таблица блюд</h2>
+
+<p>
+    @Html.ActionLink("Добавить новое блюдо", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DishName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DishDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Calories)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Proteins)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fats)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Carbohydrates)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DishName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DishDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Calories)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Proteins)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fats)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Carbohydrates)
+        </td>
+        <td>
+            @Html.ActionLink("Редактировать", "Edit", new { id=item.DishID }) |
+            @Html.ActionLink("Удалить", "Delete", new { id=item.DishID })
+        </td>
+    </tr>
+}
+
+</table>
