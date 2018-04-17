@@ -2,22 +2,22 @@
     ViewBag.Title = "Главная";
 }
 
-<div class="jumbotron">
+<div class="jumbotron" style="background: lightblue; color: white;">
     <h1>Калоризатор</h1>
-    <p class="lead">Программа-помощник на пути правильного питания.</p>
+    <p class="lead">Программа-помощник на пути правильного питания</p>
 </div>
 
-<div class="row">
+<div class="row" style="margin-top:56px;">
     <div class="col-md-6">
-        <h2>Таблица продуктов</h2>
-        <p>
-            Таблица пищевой ценности отдельных продуктов.
+        <h2 style="color: slategray;">Таблица продуктов</h2>
+        <p style="color: slategray;">
+            Таблица пищевой ценности отдельных продуктов
         </p>
-        <p><a class="btn btn-default" href="@Url.Action("Index", "Products")">Перейти &raquo;</a></p>
+        <p><a class="btn btn-info" style="margin-top:16px;" href="@Url.Action("Index", "Products")">Перейти</a></p>
     </div>
     <div class="col-md-6">
-        <h2>Таблица блюд</h2>
-        <p>Таблица пищевой ценности и характеристик блюд.</p>
-        <p><a class="btn btn-default" href="@Url.Action("Index", "Dishes")">Перейти &raquo;</a></p>
+        <h2 style="color: slategray;">Таблица блюд</h2>
+        <p style="color: slategray;">Таблица пищевой ценности и характеристик блюд</p>
+        <p><a class="btn btn-info" style="margin-top:16px;" href="@Url.Action("Index", "Dishes")">Перейти</a></p>
     </div>
 </div>

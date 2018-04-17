@@ -4,14 +4,21 @@
     ViewBag.Title = "Таблица блюд";
 }
 
-<h2>Таблица блюд</h2>
+<h2 style="color: slategray;">Таблица блюд</h2>
 
-<p>
-    @Html.ActionLink("Добавить новое блюдо", "Create")
+<p style="display: inline-block;">
+    @Html.ActionLink("Добавить новое блюдо", "Create", null, new { @class = "btn btn-success" })
+    <span class="badge badge-success" style="margin-left: 353px;">Bегетарианский</span>
+    <span class="badge badge-important">Mясной</span>
+    <span class="badge badge-warning">Глютен-фри</span>
+    <div class="search-container">
+        <input class="search-input" type="text" placeholder="Поиск..">
+        <button class="search-button" type="submit"><i class="fa fa-search"></i></button>
+    </div>
 </p>
 <table class="table">
-    <tr>
-        <th>
+    <tr style="color: slategray; background-color: lightblue;">
+        <th style="border-left: 1px solid lightblue; width: 15%;">
             @Html.DisplayNameFor(model => model.DishName)
         </th>
         <th>
@@ -29,13 +36,24 @@
         <th>
             @Html.DisplayNameFor(model => model.Carbohydrates)
         </th>
-        <th></th>
+        <th style="border-right: 1px solid lightblue; width: 20%;"></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
+    <tr style="color: slategray; background-color: #ccf2ff">
+        <td style="border-left: 1px solid lightblue;">
             @Html.DisplayFor(modelItem => item.DishName)
+            @if (item.DishName != "Борщ")
+            {
+                <span class="badge badge-success">B</span>
+            }
+            else {
+                <span class="badge badge-important">M</span>
+            }
+            @if (item.DishName != "Ячменная крупа")
+            {
+                <span class="badge badge-warning">ГФ</span>
+            }
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DishDescription)
@@ -52,9 +70,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.Carbohydrates)
         </td>
-        <td>
-            @Html.ActionLink("Редактировать", "Edit", new { id=item.DishID }) |
-            @Html.ActionLink("Удалить", "Delete", new { id=item.DishID })
+        <td style="border-right: 1px solid lightblue;">
+            @Html.ActionLink("Редактировать", "Edit", new { id=item.DishID }, new { @class = "btn btn-info" })
+            @Html.ActionLink("Удалить", "Delete", new { id=item.DishID }, new { @class = "btn btn-danger" })
         </td>
     </tr>
 }

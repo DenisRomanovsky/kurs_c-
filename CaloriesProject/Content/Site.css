@@ -22,3 +22,82 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.navbar-inverse .navbar-nav > li > a {
+    color: gainsboro;
+}
+
+.table thead > tr > th, .table tbody > tr > th, .table tfoot > tr > th, .table thead > tr > td, .table tbody > tr > td, .table tfoot > tr > td {
+    border-color: lightblue;
+    border-bottom: 1px solid lightblue;
+}
+
+.search-container {
+    display: inline-block;
+    margin-left: 50px;
+}
+
+.search-input {
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: 2px solid lightblue;
+    border-right: none;
+}
+
+.search-input:active {
+    border: 2px solid lightblue;
+    border-right: none;
+}
+
+.search-container button {
+    float: right;
+    padding: 6px 10px;
+    margin-top: 8px;
+    margin-right: 16px;
+    background: lightblue;
+    height: 40px;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+}
+
+.search-container button:hover, .search-container button:active {
+    background: #5bc0de;
+}
+
+::placeholder {
+    color: slategray;
+}
+
+@media screen and (max-width: 600px) {
+    .search-container {
+        float: none;
+    }
+
+    search-input, .search-container button {
+        float: none;
+        display: block;
+        text-align: left;
+        width: 100%;
+        margin: 0;
+        padding: 14px;
+    }
+
+    .search-input {
+        border: 1px solid #ccc;
+    }
+}
+
+.badge-success {
+    background-color: #468847;
+}
+
+.badge-important {
+    background-color: #b94a48;
+}
+
+.badge-warning {
+    background-color: #f89406;
+}
+

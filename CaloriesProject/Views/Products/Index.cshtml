@@ -4,14 +4,21 @@
     ViewBag.Title = "Таблица продуктов";
 }
 
-<h2>Таблица продуктов</h2>
+<h2 style="color: slategray;">Таблица продуктов</h2>
 
-<p>
-    @Html.ActionLink("Добавить новый продукт", "Create")
+<p style="display: inline-block;">
+    @Html.ActionLink("Добавить новый продукт", "Create", null, new { @class = "btn btn-success" })
+    <span class="badge badge-success" style="margin-left: 353px;">Bегетарианский</span>
+    <span class="badge badge-important">Mясной</span>
+    <span class="badge badge-warning">Глютен-фри</span>
+    <div class="search-container">
+        <input class="search-input" type="text" placeholder="Поиск..">
+        <button class="search-button" type="submit"><i class="fa fa-search"></i></button>
+    </div>
 </p>
 <table class="table">
-    <tr>
-        <th>
+    <tr style="color: slategray; background-color: lightblue;">
+        <th style="border-left: 1px solid lightblue; width: 21%;">
             @Html.DisplayNameFor(model => model.ProductName)
         </th>
         <th>
@@ -29,13 +36,24 @@
         <th>
             @Html.DisplayNameFor(model => model.Carbohydrates)
         </th> 
-        <th></th>
+        <th style="border-right: 1px solid lightblue; width: 20%;"></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
+    <tr style="color: slategray; background-color: #ccf2ff">
+        <td style="border-left: 1px solid lightblue;">
             @Html.DisplayFor(modelItem => item.ProductName)
+            @if (item.ProductName != "Яйцо куриное")
+            {
+                <span class="badge badge-success">B</span>
+            }
+            else {
+                <span class="badge badge-important">M</span>
+            }
+            @if (item.ProductName != "Ячменная крупа")
+            {
+                <span class="badge badge-warning">ГФ</span>
+            }
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ProductDescription)
@@ -53,8 +71,8 @@
             @Html.DisplayFor(modelItem => item.Carbohydrates)
         </td>
         <td>
-            @Html.ActionLink("Редактировать", "Edit", new { id=item.ProductID }) |
-            @Html.ActionLink("Удалить", "Delete", new { id=item.ProductID })
+            @Html.ActionLink("Редактировать", "Edit", new { id=item.ProductID }, new { @class = "btn btn-info" })
+            @Html.ActionLink("Удалить", "Delete", new { id=item.ProductID }, new { @class = "btn btn-danger" })
         </td>
     </tr>
 }
